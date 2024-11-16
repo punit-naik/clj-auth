@@ -33,6 +33,17 @@
     :returning :*}))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(defn upsert!
+  "Insert or update a record based on conflict-columns and return the result"
+  [datasource table row conflict-columns update-map]
+  (execute-one!
+   datasource
+   {:insert-into table
+    :values [row]
+    :on-conflict conflict-columns
+    :do-update-set update-map}))
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn update!
   "Update records and return updated rows"
   [datasource table set-map where-clause]
