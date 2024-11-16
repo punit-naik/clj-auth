@@ -1,0 +1,19 @@
+# Clojure development directories
+.clj-kondo/
+.cpcache/
+.lsp/
+target/
+
+# Node.js
+node_modules/
+package.json
+package-lock.json
+
+# ClojureScript compiled output
+resources/public/js/
+
+# Development logs
+figwheel_server.log
+
+# Mac OS
+.DS_Store
