@@ -1,7 +1,7 @@
 (ns clj-auth.backend.db
-  (:require [next.jdbc :as jdbc]
-            [honey.sql :as sql]
-            [clj-auth.backend.db.utils :as db.utils]))
+  (:require
+   [next.jdbc :as jdbc]
+   [clj-auth.backend.db.utils :as db.utils]))
 
 (def db-spec
   {:dbtype "postgresql"
@@ -13,7 +13,8 @@
 
 (def datasource (jdbc/get-datasource db-spec))
 
-(defn create-users-table! []
+(defn create-users-table!
+  []
   (db.utils/execute!
    datasource
    {:create-table [:users :if-not-exists]
@@ -23,14 +24,16 @@
      [:password [:varchar 255] [:not nil]]
      [:created_at :timestamp [:default [:raw "CURRENT_TIMESTAMP"]]]]}))
 
-(defn get-user-by-username [username]
+(defn get-user-by-username
+  [username]
   (db.utils/query-one
    datasource
    {:select [:*]
     :from [:users]
     :where [:= :username username]}))
 
-(defn create-user! [username password]
+(defn create-user!
+  [username password]
   (try
     (db.utils/insert!
      datasource

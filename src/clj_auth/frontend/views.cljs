@@ -1,7 +1,8 @@
 (ns clj-auth.frontend.views
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [clj-auth.frontend.events :as events]))
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [clj-auth.frontend.events :as events]))
 
 (defn loading-spinner []
   [:div.flex.justify-center.items-center.py-4

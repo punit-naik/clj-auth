@@ -1,7 +1,8 @@
 (ns clj-auth.frontend.events
-  (:require [re-frame.core :as rf]
-            [ajax.core :as ajax]
-            [day8.re-frame.http-fx]))
+  (:require
+   [re-frame.core :as rf]
+   [ajax.core :as ajax]
+   [day8.re-frame.http-fx]))
 
 (def api-url "/api")
 
@@ -142,7 +143,7 @@
 ;; Logout event
 (rf/reg-event-fx
  ::logout
- (fn [{:keys [db]} _]
+ (fn [{:keys [_db]} _]
    (remove-token!)
    {:db {:auth-token nil
          :user nil

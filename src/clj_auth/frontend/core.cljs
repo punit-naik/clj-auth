@@ -1,9 +1,10 @@
 (ns clj-auth.frontend.core
-  (:require [reagent.dom :as rdom]
-            [re-frame.core :as rf]
-            [clj-auth.frontend.events :as events]
-            [clj-auth.frontend.views :as views]
-            [day8.re-frame.http-fx]))
+  (:require
+   [reagent.dom :as rdom]
+   [re-frame.core :as rf]
+   [clj-auth.frontend.events :as events]
+   [clj-auth.frontend.views :as views]
+   [day8.re-frame.http-fx]))
 
 (defn ^:dev/after-load mount-root []
   (rf/clear-subscription-cache!)

@@ -1,10 +1,12 @@
 (ns clj-auth.backend.db.utils
-  (:require [honey.sql :as sql]
-            [next.jdbc :as jdbc]))
+  (:require
+   [honey.sql :as sql]
+   [next.jdbc.result-set :as rs]
+   [next.jdbc :as jdbc]))
 
 (def default-opts
   {:return-keys true
-   :builder-fn jdbc/unqualified-snake-kebab-opts})
+   :builder-fn rs/as-unqualified-kebab-maps})
 
 (defn format-sql
   "Format HoneySQL query with default options"
@@ -30,6 +32,7 @@
     :values [row]
     :returning :*}))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn update!
   "Update records and return updated rows"
   [datasource table set-map where-clause]
@@ -40,6 +43,7 @@
     :where where-clause
     :returning :*}))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn delete!
   "Delete records and return deleted rows"
   [datasource table where-clause]
@@ -49,6 +53,7 @@
     :where where-clause
     :returning :*}))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn query
   "Execute a SELECT query"
   [datasource query-map]

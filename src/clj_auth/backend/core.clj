@@ -1,11 +1,13 @@
 (ns clj-auth.backend.core
-  (:require [clj-auth.backend.handler :as handler]
-            [org.httpkit.server :as server]
-            [clj-auth.backend.db :as db])
+  (:require
+   [clj-auth.backend.handler :as handler]
+   [org.httpkit.server :as server]
+   [clj-auth.backend.db :as db])
   (:gen-class))
 
 (defonce server (atom nil))
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn stop-server []
   (when-let [s @server]
     (s :timeout 100)
@@ -23,6 +25,6 @@
   (db/create-users-table!)
   (println "Database initialized successfully"))
 
-(defn -main [& args]
+(defn -main [& _args]
   (init-db)
   (start-server))

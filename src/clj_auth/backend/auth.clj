@@ -1,8 +1,9 @@
 (ns clj-auth.backend.auth
-  (:require [buddy.sign.jwt :as jwt]
-            [buddy.core.nonce :as nonce]
-            [buddy.hashers :as hashers]
-            [clj-auth.backend.db :as db]))
+  (:require
+   [buddy.sign.jwt :as jwt]
+   [buddy.core.nonce :as nonce]
+   [buddy.hashers :as hashers]
+   [clj-auth.backend.db :as db]))
 
 (def secret (nonce/random-bytes 32))
 
@@ -19,7 +20,7 @@
 
 (defn authenticate [{:keys [username password]}]
   (when-let [user (db/get-user-by-username username)]
-    (when (hashers/check password (:users/password user))
+    (when (hashers/check password (:password user))
       (create-auth-token {:username username}))))
 
 (defn verify-token [token]

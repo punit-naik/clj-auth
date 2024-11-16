@@ -1,20 +1,21 @@
 (ns clj-auth.backend.handler
-  (:require [reitit.ring :as ring]
-            [reitit.ring.middleware.muuntaja :as muuntaja]
-            [reitit.ring.middleware.parameters :as parameters]
-            [reitit.swagger :as swagger]
-            [reitit.swagger-ui :as swagger-ui]
-            [reitit.ring.coercion :as coercion]
-            [reitit.coercion.spec :as spec-coercion]
-            [muuntaja.core :as m]
-            [clj-auth.backend.auth :as auth]
-            [clj-auth.backend.schema :as schema]
-            [ring.util.response :as response]
-            [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.content-type :refer [wrap-content-type]]
-            [ring.middleware.not-modified :refer [wrap-not-modified]]
-            [ring.middleware.cors :refer [wrap-cors]]
-            [clojure.string :as str]))
+  (:require
+   [reitit.ring :as ring]
+   [reitit.ring.middleware.muuntaja :as muuntaja]
+   [reitit.ring.middleware.parameters :as parameters]
+   [reitit.swagger :as swagger]
+   [reitit.swagger-ui :as swagger-ui]
+   [reitit.ring.coercion :as coercion]
+   [reitit.coercion.spec :as spec-coercion]
+   [muuntaja.core :as m]
+   [clj-auth.backend.auth :as auth]
+   [clj-auth.backend.schema :as schema]
+   [ring.util.response :as response]
+   [ring.middleware.resource :refer [wrap-resource]]
+   [ring.middleware.content-type :refer [wrap-content-type]]
+   [ring.middleware.not-modified :refer [wrap-not-modified]]
+   [ring.middleware.cors :refer [wrap-cors]]
+   [clojure.string :as str]))
 
 (defn extract-token [authorization]
   (when authorization
