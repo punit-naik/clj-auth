@@ -20,6 +20,7 @@
                  [buddy/buddy-hashers "2.0.167"]
                  [buddy/buddy-sign "3.5.351"]
                  [com.github.seancorfield/next.jdbc "1.3.883"]
+                 [com.github.seancorfield/honeysql "2.5.1103"]
                  [org.postgresql/postgresql "42.6.0"]
                  [ring-cors/ring-cors "0.1.13"]
 

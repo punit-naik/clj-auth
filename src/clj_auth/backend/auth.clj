@@ -1,19 +1,16 @@
 (ns clj-auth.backend.auth
   (:require [buddy.sign.jwt :as jwt]
             [buddy.core.nonce :as nonce]
-            [buddy.hashers :as hashers]))
+            [buddy.hashers :as hashers]
+            [clj-auth.backend.db :as db]))
 
 (def secret (nonce/random-bytes 32))
 
-;; In-memory user store (replace with database in production)
-(def users (atom {}))
-
 (defn register! [{:keys [username password] :as _user-data}]
-  (if (get @users username)
-    {:error "Username already taken"}
-    (do
-      (swap! users assoc username {:username username
-                                 :password (hashers/derive password)})
+  (let [hashed-password (hashers/derive password)
+        result (db/create-user! username hashed-password)]
+    (if (:error result)
+      result
       {:success true
        :username username})))
 
@@ -21,8 +18,8 @@
   (jwt/encrypt claims secret {:alg :a256kw :enc :a128gcm}))
 
 (defn authenticate [{:keys [username password]}]
-  (when-let [user (get @users username)]
-    (when (hashers/check password (:password user))
+  (when-let [user (db/get-user-by-username username)]
+    (when (hashers/check password (:users/password user))
       (create-auth-token {:username username}))))
 
 (defn verify-token [token]
