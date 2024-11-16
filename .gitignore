@@ -3,6 +3,7 @@
 .cpcache/
 .lsp/
 target/
+.calva/
 
 # Node.js
 node_modules/
