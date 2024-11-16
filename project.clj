@@ -1,6 +1,6 @@
-(defproject clj-auth "0.1.0-SNAPSHOT"
-  :description "Clojure Full-Stack Authentication System"
-  :url "http://example.com/FIXME"
+(defproject clj-auth "0.0.1"
+  :description "Sample full-stack web SPA (clojure/clojurescript) project which implements auth using jwt"
+  :url "https://github.com/punit-naik/clj-auth"
   :license {:name "EPL-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
 
